@@ -1,0 +1,1 @@
+console.log("Não era isso que eu ia fazer mas ok.");
