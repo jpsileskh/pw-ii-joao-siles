@@ -1,3 +1,4 @@
-Oi pessoal!
-Hora da baguncinha!!
+console.log("Oi pessoal! Hora da baguncinha!!")
+
+
 
