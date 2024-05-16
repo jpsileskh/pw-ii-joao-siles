@@ -2,7 +2,7 @@
     $n = 6;
 
     if ($n >= 4) {
-        echo $n, " é maior ou igual a 4";
+        echo $n, " é maior ou igual a 4 ♥";
     }
 
     $n1 = 3;
