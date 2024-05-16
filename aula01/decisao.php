@@ -2,7 +2,7 @@
     $n = 6;
 
     if ($n >= 4) {
-        echo $n, "Não lembro o que escrever aqui";
+        echo $n, " é maior ou igual a 4 + uma aleração quase plausível";
     }
 
     $n1 = 3;
