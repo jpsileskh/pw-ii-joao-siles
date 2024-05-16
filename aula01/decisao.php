@@ -11,7 +11,7 @@
     $result = ($n1%$n2)%2;
 
     if ($result == 1) {
-        echo "<br>", $result, "quociente de impar.";
+        echo "<br>", $result, "quebrei tudo por aqui";
     } else {
         echo "<br>", $result, "quociente de par.";
     }    
