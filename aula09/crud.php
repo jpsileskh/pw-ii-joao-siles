@@ -43,9 +43,10 @@ if ($acao === 'adicionar') {
     exit();
 } elseif ($acao === 'editar') {
     $id = intval($_GET['id']);
+    $nomeoriginal = ($_GET['nome']);
     $nome = $_POST['nome'];
     editarNome($id, $nome);
-    header('Location: editar.php?id=' . $id); // Redirecionar para editar.php com o ID
+    header('Location: editar.php?id=' . $id . 'nome=' . $nomeoriginal); // Redirecionar para editar.php com o ID
     exit();
 } elseif ($acao === 'excluir') {
     excluirNome($id);
