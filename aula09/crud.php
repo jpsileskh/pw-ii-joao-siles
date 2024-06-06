@@ -1,36 +1,35 @@
 <?php
-
 // Conectar ao banco de dados
 $db = new mysqli('localhost', 'root', '', 'crud');
 
 // Funções para CRUD
 function getNomes() {
-  global $db;
-  $sql = "SELECT * FROM nomes";
-  $result = $db->query($sql);
-  $nomes = [];
-  while ($row = $result->fetch_assoc()) {
-    $nomes[] = $row;
-  }
-  return $nomes;
+    global $db;
+    $sql = "SELECT * FROM nomes";
+    $result = $db->query($sql);
+    $nomes = [];
+    while ($row = $result->fetch_assoc()) {
+        $nomes[] = $row;
+    }
+    return $nomes;
 }
 
 function adicionarNome($nome) {
-  global $db;
-  $sql = "INSERT INTO nomes (nome) VALUES ('$nome')";
-  $db->query($sql);
+    global $db;
+    $sql = "INSERT INTO nomes (nome) VALUES ('$nome')";
+    $db->query($sql);
 }
 
 function editarNome($id, $nome) {
-  global $db;
-  $sql = "UPDATE nomes SET nome = '$nome' WHERE id = $id";
-  $db->query($sql);
+    global $db;
+    $sql = "UPDATE nomes SET nome = '$nome' WHERE id = $id";
+    $db->query($sql);
 }
 
 function excluirNome($id) {
-  global $db;
-  $sql = "DELETE FROM nomes WHERE id = $id";
-  $db->query($sql);
+    global $db;
+    $sql = "DELETE FROM nomes WHERE id = $id";
+    $db->query($sql);
 }
 
 // Ações do CRUD
@@ -39,24 +38,23 @@ $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 $nome = isset($_POST['nome']) ? $_POST['nome'] : '';
 
 if ($acao === 'adicionar') {
-  adicionarNome($nome);
-  header('Location: crud.php');
-  exit();
+    adicionarNome($nome);
+    header('Location: crud.php');
+    exit();
 } elseif ($acao === 'editar') {
-  $id = intval($_GET['id']);
-  $nome = $_POST['nome'];
-  editarNome($id, $nome);
-  header('Location: editar.php');
-  exit();
+    $id = intval($_GET['id']);
+    $nome = $_POST['nome'];
+    editarNome($id, $nome);
+    header('Location: editar.php?id=' . $id); // Redirecionar para editar.php com o ID
+    exit();
 } elseif ($acao === 'excluir') {
-  excluirNome($id);
-  header('Location: crud.php');
-  exit();
+    excluirNome($id);
+    header('Location: crud.php');
+    exit();
 }
 
 // Obter todos os nomes
 $nomes = getNomes();
-
 ?>
 
 <h1>Lista de Nomes</h1>
@@ -76,12 +74,10 @@ $nomes = getNomes();
         <td><?php echo $nome['id']; ?></td>
         <td><?php echo $nome['nome']; ?></td>
         <td>
-            <a href="?acao=editar&id=<?php echo $nome['id']; ?>&nome=<?php echo urlencode($nome['nome']); ?>">Editar</a>
-            |
+            <a href="?acao=editar&id=<?php echo $nome['id']; ?>&nome=<?php echo urlencode($nome['nome']); ?>">Editar</a> |
             <a href="?acao=excluir&id=<?php echo $nome['id']; ?>">Excluir</a>
         </td>
     </tr>
     <?php endforeach; ?>
 </table>
-
 <?php $db->close(); ?>
